@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Profesional</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="header-title">Mi Página Profesional</h1>
+    </header>
+
+    <main class="main">
+        <section class="content-section">
+            <h2>Bienvenido</h2>
+            <p>
+                Este es un ejemplo de una página web con un diseño profesional y responsivo. Puedes usar esta estructura como base para tus proyectos.
+            </p>
+            <button id="miBoton" class="button">Ejecutar Mi Primer Algoritmo</button>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Mi Proyecto Profesional. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="aprendiendo.js"></script>
+</body>
+</html>

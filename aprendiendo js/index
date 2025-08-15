@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proyecto base | Algoritmos</title>
+
+  <style>
+    :root{
+      --color-primario: #052845;   /* principal */
+      --color-secundario: #490082; /* secundario */
+      --color-texto: #0f172a;
+      --color-texto-inv: #ffffff;
+      --color-borde: #e2e8f0;
+      --color-fondo: #f8fafc;
+      --radius: 12px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+      --shadow-md: 0 6px 18px rgba(0,0,0,.10);
+      --container: 1200px;
+    }
+
+    /* Reset suave */
+    *,*::before,*::after{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--color-texto);
+      background: var(--color-fondo);
+      line-height: 1.55;
+    }
+    img{ max-width:100%; display:block; }
+    a{ color: inherit; text-decoration: none; }
+    .container{
+      width: min(100% - 2rem, var(--container));
+      margin-inline: auto;
+    }
+
+    /* Cabecera */
+    header.site-header{
+      position: sticky; top:0; z-index: 50;
+      background: linear-gradient(90deg, var(--color-primario), var(--color-secundario));
+      color: var(--color-texto-inv);
+      box-shadow: var(--shadow-sm);
+    }
+    .header-inner{
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:.75rem; font-weight: 700; letter-spacing:.3px;
+    }
+    .brand-mark{
+      width:36px; height:36px; border-radius: 10px;
+      background: #ffffff22;
+      border: 1px solid #ffffff33;
+      display:grid; place-items:center; font-size:.9rem;
+    }
+    nav.primary-nav{
+      display:flex; align-items:center; gap:1rem; flex-wrap: wrap;
+    }
+    nav.primary-nav a{
+      padding:.4rem .7rem; border-radius:8px; color: #ffffffee;
+    }
+    nav.primary-nav a:hover, nav.primary-nav a:focus-visible{
+      background:#ffffff22;
+      outline: none;
+    }
+
+    /* Hero / llamada a la acción */
+    .hero{
+      padding: clamp(2rem, 4vw + 1rem, 4rem) 0;
+      background:
+        radial-gradient(1200px 400px at 90% -10%, #49008211, transparent 60%),
+        radial-gradient(1000px 400px at 10% -20%, #05284510, transparent 60%);
+    }
+    .hero-grid{
+      display:grid; gap:2rem; align-items:center;
+      grid-template-columns: 1.1fr .9fr;
+    }
+    @media (max-width: 900px){
+      .hero-grid{ grid-template-columns: 1fr; }
+    }
+    .card{
+      background:#fff; border:1px solid var(--color-borde);
+      border-radius: var(--radius);
+      padding: clamp(1rem, 1.2rem + 1vw, 2rem);
+      box-shadow: var(--shadow-md);
+    }
+    .kicker{
+      font-size:.85rem; letter-spacing:.4px; text-transform: uppercase; font-weight:700;
+      color: var(--color-secundario);
+    }
+    h1{
+      margin:.35rem 0 1rem; line-height:1.2;
+      font-size: clamp(1.6rem, 1.2rem + 2vw, 2.4rem);
+      color: var(--color-primario);
+    }
+    p.lead{
+      font-size: clamp(1rem, .95rem + .4vw, 1.15rem);
+      color:#334155;
+    }
+
+    /* Botones */
+    .btn{
+      display:inline-flex; align-items:center; gap:.6rem;
+      padding:.8rem 1rem; border-radius: 10px; font-weight:600;
+      border:1px solid transparent; cursor:pointer;
+      transition: transform .05s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+    }
+    .btn:focus-visible{ outline: 3px solid #ffffff; outline-offset: 3px; }
+    .btn-primary{
+      background: var(--color-secundario); color: var(--color-texto-inv);
+      box-shadow: 0 8px 20px #49008233, inset 0 -2px 0 #00000022;
+    }
+    .btn-primary:hover{ transform: translateY(-1px); }
+    .btn-primary:active{ transform: translateY(0); box-shadow: inset 0 2px 0 #00000022; }
+
+    .actions{ display:flex; flex-wrap:wrap; gap:.8rem; margin-top:1rem; }
+
+    /* Panel de salida */
+    .output{
+      background:#0b1220; color:#e2e8f0; border-radius: var(--radius);
+      border:1px solid #18212f; padding:1rem; font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+      min-height: 72px;
+    }
+    .output strong{ color:#93c5fd; }
+
+    /* Pie de página */
+    footer.site-footer{
+      margin-top: 3rem;
+      background: linear-gradient(90deg, var(--color-primario), var(--color-secundario));
+      color: var(--color-texto-inv);
+    }
+    .footer-grid{
+      display:grid; gap:1.2rem; padding: 2rem 0;
+      grid-template-columns: 1.2fr repeat(3, 1fr);
+    }
+    .footer-col h4{
+      margin:0 0 .6rem; font-size:1rem;
+    }
+    .footer-col a{
+      display:block; color:#ffffffcc; padding:.25rem 0;
+    }
+    .footer-col a:hover{ color:#ffffff; }
+    .footer-bottom{
+      border-top: 1px solid #ffffff22;
+      padding: .9rem 0; font-size:.9rem; color:#ffffffcc;
+      display:flex; justify-content:space-between; gap:.75rem; flex-wrap:wrap;
+    }
+    @media (max-width: 900px){
+      .footer-grid{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px){
+      .footer-grid{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Cabecera -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <div class="brand" aria-label="Marca">
+        <div class="brand-mark" aria-hidden="true">λ</div>
+        <span>Algoritmos • Demo</span>
+      </div>
+      <nav class="primary-nav" aria-label="Navegación principal">
+        <a href="#">Inicio</a>
+        <a href="#algoritmo">Algoritmo</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sección principal -->
+  <main id="contenido" class="hero" role="main">
+    <div class="container hero-grid">
+      <section class="card">
+        <span class="kicker">Prueba tu lógica</span>
+        <h1>Integra tus funciones con estilo profesional</h1>
+        <p class="lead">
+          Este proyecto base es responsivo, usa tus colores primario y secundario, e incluye un botón que ejecuta
+          <strong>miPrimerAlgoritmo()</strong> desde tu archivo <strong>aprendiendo.js</strong>.
+        </p>
+
+        <div class="actions">
+          <button id="btn-algoritmo" class="btn btn-primary" aria-controls="salida" aria-describedby="ayuda-boton">
+            Ejecutar “miPrimerAlgoritmo”
+          </button>
+          <span id="ayuda-boton" class="sr-only" hidden>
+            Presiona para ejecutar la función miPrimerAlgoritmo y ver el resultado debajo.
+          </span>
+        </div>
+
+        <div style="margin-top:1.25rem">
+          <div class="output" id="salida" aria-live="polite" role="status">
+            <!-- Aquí se mostrará la salida del algoritmo -->
+          </div>
+        </div>
+      </section>
+
+      <aside class="card" id="algoritmo">
+        <h2 style="margin-top:0; color:var(--color-primario)">¿Cómo agregar tus funciones?</h2>
+        <ol style="margin:0; padding-left:1.2rem">
+          <li>Crea/edita <strong>aprendiendo.js</strong> en la misma carpeta.</li>
+          <li>Define <code>function miPrimerAlgoritmo() { ... }</code> y retorna un valor o texto.</li>
+          <li>Pulsa el botón para ver la salida aquí mismo.</li>
+        </ol>
+        <p style="margin-top:.8rem; color:#475569">
+          Consejo: retorna un objeto o string; si es objeto/array, lo verás como JSON.
+        </p>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Sobre el proyecto</h4>
+          <p style="margin:0; color:#ffffffcc">
+            Base limpia para experimentar con funciones y algoritmos en JavaScript.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Enlaces</h4>
+          <a href="#">Documentación</a>
+          <a href="#">Ejemplos</a>
+          <a href="#">Changelog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Recursos</h4>
+          <a href="#">Guías</a>
+          <a href="#">FAQ</a>
+          <a href="#">Soporte</a>
+        </div>
+        <div class="footer-col" id="contacto">
+          <h4>Contacto</h4>
+          <a href="mailto:info@tuprojecto.dev">info@tuprojecto.dev</a>
+          <a href="#">@tuprojecto</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> Tu Proyecto</span>
+        <span>Hecho con <span aria-hidden="true">★</span> lógica y diseño</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Carga tus funciones -->
+  <!-- Importante: agrega/edita aprendiendo.js y define miPrimerAlgoritmo() ahí -->
+  <script src="aprendiendo.js" defer></script>
+
+  <script>
+    // Utilidad: formatear salida de cualquier tipo
+    function formatearResultado(valor){
+      try{
+        if (typeof valor === 'string') return valor;
+        return JSON.stringify(valor, null, 2);
+      }catch(_){
+        return String(valor);
+      }
+    }
+
+    // Manejo del botón y ejecución segura
+    function mostrarMensaje(msg, tipo='info'){
+      const salida = document.getElementById('salida');
+      const colores = {
+        info: '#93c5fd',
+        ok: '#34d399',
+        error: '#fca5a5'
+      };
+      salida.innerHTML = '<strong style="color:' + (colores[tipo]||'#93c5fd') + '">' + msg + '</strong>';
+    }
+
+    function anexarResultado(valor){
+      const salida = document.getElementById('salida');
+      salida.textContent = formatearResultado(valor);
+    }
+
+    function ejecutarAlgoritmo(){
+      const fn = window.miPrimerAlgoritmo;
+      if (typeof fn !== 'function'){
+        mostrarMensaje('Define miPrimerAlgoritmo() en aprendiendo.js y vuelve a intentarlo.', 'error');
+        return;
+      }
+      try{
+        const resultado = fn();
+        // Si la función es asíncrona o devuelve Promesa
+        if (resultado && typeof resultado.then === 'function'){
+          mostrarMensaje('Ejecutando miPrimerAlgoritmo()…', 'info');
+          resultado
+            .then(res => anexarResultado(res))
+            .catch(err => mostrarMensaje('Error: ' + (err?.message || err), 'error'));
+        }else{
+          anexarResultado(resultado);
+        }
+      }catch(err){
+        mostrarMensaje('Error al ejecutar: ' + (err?.message || err), 'error');
+      }
+    }
+
+    // Wire-up
+    document.addEventListener('DOMContentLoaded', function(){
+      document.getElementById('year').textContent = new Date().getFullYear();
+      const btn = document.getElementById('btn-algoritmo');
+      btn.addEventListener('click', ejecutarAlgoritmo);
+    });
+
+    // Ejemplo opcional (elimina esto cuando crees aprendiendo.js)
+    // Descomenta para ver algo funcionando ya:
+    /*
+    function miPrimerAlgoritmo(){
+      // Demo: calcula los primeros 10 cuadrados
+      return Array.from({length:10}, (_,i) => ({ n:i+1, cuadrado:(i+1)*(i+1) }));
+    }
+    */
+  </script>
+</body>
+</html>

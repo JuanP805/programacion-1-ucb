@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Proyecto Algoritmos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>Bienvenido a Mis Algoritmos</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Sobre mí</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <section class="intro">
+      <h2>Ejecutar mi primer algoritmo</h2>
+      <button onclick="miPrimerAlgoritmo()">Ejecutar</button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 - Mi Proyecto de Algoritmos</p>
+  </footer>
+
+  <script src="aprendiendo.js"></script>
+</body>
+</html>
